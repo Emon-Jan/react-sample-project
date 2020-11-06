@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table } from "antd";
+import { Button, Popconfirm, Space, Table } from "antd";
 import generatePDF from "../generatePDF/GeneratePDF";
 
 const { Column } = Table;
@@ -26,12 +26,35 @@ class Result extends Component {
     };
   }
 
+  confirm = (e) => {
+    e.preventDefault();
+    this.props.onResetState();
+  };
+
+  cancel = (e) => {
+    e.preventDefault();
+  };
+
   render() {
     return (
       <div>
-        <Button type="primary" onClick={() => generatePDF(this.state.data[0])}>
-          Download Result as PDF
-        </Button>
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => generatePDF(this.state.data[0])}
+          >
+            Download Result as PDF
+          </Button>
+          <Popconfirm
+            title="Do you want to reset all?"
+            onConfirm={this.confirm}
+            onCancel={this.cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type="dashed">Reset</Button>
+          </Popconfirm>
+        </Space>
         <Table
           className="table-class"
           dataSource={this.state.data}
