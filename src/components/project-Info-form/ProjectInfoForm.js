@@ -24,7 +24,7 @@ class ProjectinfoForm extends Component {
   };
 
   handleOnRemoveFile = () => {
-    this.props.setShowGraph();
+    this.props.setHideGraph();
     this.props.setMinAndMax({
       minAndMax: {
         minX: null,
