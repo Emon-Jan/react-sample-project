@@ -9,41 +9,45 @@ import Graph from "./components/graph-component/GraphComponent";
 
 const { Header, Content } = Layout;
 
-class App extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
-
-  state = {
+const initialState = {
+  pName: "",
+  pDescription: "",
+  client: "",
+  contractor: "",
+  minAndMax: {
+    minX: null,
+    maxX: null,
+    minY: null,
+    maxY: null,
+    minZ: null,
+    maxZ: null,
+  },
+  errors: {
     pName: "",
-    pDescription: "",
     client: "",
     contractor: "",
-    minAndMax: {
-      minX: null,
-      maxX: null,
-      minY: null,
-      maxY: null,
-      minZ: null,
-      maxZ: null,
-    },
-    errors: {
-      pName: "",
-      client: "",
-      contractor: "",
-      minX: "",
-      maxX: "",
-      minY: "",
-      maxY: "",
-      minZ: "",
-      maxZ: "",
-    },
-    current: 0,
-    isResult: false,
-    showGraph: false,
-    kpAsX: [],
-    xAsY: [],
+    minX: "",
+    maxX: "",
+    minY: "",
+    maxY: "",
+    minZ: "",
+    maxZ: "",
+  },
+  current: 0,
+  isResult: false,
+  showGraph: false,
+  kpAsX: [],
+  xAsY: [],
+};
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
+
+  onResetState = () => {
+    this.setState(initialState);
   };
 
   setValueForGraph = (x, y) => {
@@ -224,7 +228,11 @@ class App extends Component {
   };
 
   setShowGraph = () => {
-    this.setState({ showGraph: !this.state.showGraph });
+    this.setState({ showGraph: true });
+  };
+
+  setHideGraph = () => {
+    this.setState({ showGraph: false });
   };
 
   setPreviousCurrent = () => {
@@ -234,6 +242,7 @@ class App extends Component {
   render() {
     const projectInfoProps = {
       setShowGraph: this.setShowGraph,
+      setHideGraph: this.setHideGraph,
       setValueForGraph: this.setValueForGraph,
       setCurrent: this.setCurrent,
       setMinAndMax: this.setMinAndMax,
@@ -269,7 +278,9 @@ class App extends Component {
                     <Graph kpAsX={this.state.kpAsX} xAsY={this.state.xAsY} />
                   </div>
                 )}
-              {this.state.isResult && <Result {...this.state} />}
+              {this.state.isResult && (
+                <Result {...this.state} onResetState={this.onResetState} />
+              )}
             </div>
           </Content>
         </Layout>
