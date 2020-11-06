@@ -1,0 +1,58 @@
+.setp-div {
+  width: 70%;
+}
+
+.steps-content {
+  margin-top: 16px;
+  border-radius: 2px;
+  background-color: #fafafa;
+  min-height: 200px;
+  padding-top: 20px;
+}
+
+.form-container {
+  padding: 0 100px;
+  padding-bottom: 30px;
+}
+
+.ant-col-16 {
+  display: block;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.ant-input-number {
+  width: 100%;
+}
+
+.form-container {
+  padding: 0 100px 20px 100px;
+}
+
+.form-first-field {
+  display: flex;
+  align-items: center;
+}
+
+.form-first-field button {
+  margin-top: 22px;
+  margin-left: 15px;
+}
+
+.form-input-label {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.form-input-label label {
+  font-weight: 600;
+  color: rgb(83, 91, 97);
+}
+
+.error {
+  color: #db2269;
+  font-size: 10px;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+}
